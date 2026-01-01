@@ -3,8 +3,11 @@ import {PORT} from './config/env.js';
 import authRouter from './routes/auth.routes.js';
 import userRouter from './routes/user.route.js';
 import subscriptionRouter from './routes/subscription.route.js';
+import { connectDB } from './config/db.js';
+
 
 const app = express();
+await connectDB();
 app.use(express.json());
 
 app.use('/api/v1/auth',authRouter);
@@ -13,4 +16,5 @@ app.use('/api/v1/subscriptions',subscriptionRouter);
 
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);
+
 });
