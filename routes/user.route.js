@@ -1,20 +1,15 @@
 import { Router } from "express";
+import { getUserController, getUsersController } from "../controllers/user.controller.js";
+import { authorize } from "../middlewares/auth.middleware.js";
+import { errorMiddleware } from "../middlewares/error.middleware.js";
 
 const userRouter = Router();
 
 // Get all users
-userRouter.get('/', (req, res) => {
-    res.status(200).json({
-        message: "Get all users"
-    })
-});
+userRouter.get('/', authorize, getUsersController);
 
 // Get user by ID
-userRouter.get('/:id', (req, res) => {
-    res.status(200).json({
-        message: "Get user with ID " + req.params.id
-    })
-});
+userRouter.get('/:id', authorize,  getUserController);
 
 // Create new user
 userRouter.post('/', (req, res) => {
