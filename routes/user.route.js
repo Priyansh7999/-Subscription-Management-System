@@ -6,6 +6,7 @@ import { errorMiddleware } from "../middlewares/error.middleware.js";
 const userRouter = Router();
 
 // Get all users
+
 userRouter.get('/', authorize, getUsersController);
 
 // Get user by ID
